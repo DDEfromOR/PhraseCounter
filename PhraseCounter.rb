@@ -1,8 +1,9 @@
+require "pry"
+
 class PhraseCounter
     counter = Hash.new(0)
     #assumes files are hosted locally
     input_file = File.open('test.txt', 'r')
-    output_file = File.open('phraseresults.txt', 'w')
     words = input_file.read.downcase.scan(/(\b[a-z]+\b)/).map 
     
     words.each_cons(3) do |word1, word2, word3|
@@ -12,5 +13,5 @@ class PhraseCounter
     
     sortedCounter = counter.sort_by {|key,value| value}
     sortedCounter.last(100).reverse
-    .each{|key| output_file.print key[1], ' - ', key[0][0],' ', key[0][1],' ', key[0][2],"\n"}
+    .each{|key| Pry::ColorPrinter.pp("#{key[1]} - #{key[0][0]} #{key[0][1]} #{key[0][2]}")}
 end
