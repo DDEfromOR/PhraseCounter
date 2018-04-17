@@ -10,6 +10,7 @@ class PhraseCounter
         counter[phrase] = counter[phrase] + 1
     end
     
-    counter.sort_by {|key,value| value}
-    .last(100).reverse.each{|key| output_file.print key, ' Occurences: ', counter[key], "\n"}
+    sortedCounter = counter.sort_by {|key,value| value}
+    sortedCounter.last(100).reverse
+    .each{|key| output_file.print key[1], ' - ', key[0][0],' ', key[0][1],' ', key[0][2],"\n"}
 end
