@@ -10,6 +10,6 @@ class PhraseCounter
         counter[phrase] = counter[phrase] + 1
     end
     
-    counter.keys.sort_by {|key, value| value}
+    counter.sort_by {|key,value| value}
     .each{|key| output_file.print key, ' Occurences: ', counter[key], "\n"}
 end
