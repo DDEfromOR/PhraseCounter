@@ -2,9 +2,7 @@ require "pry"
 
 class PhraseCounter
     counter = Hash.new(0)
-    #assumes files are hosted locally
-    input_file = File.open('test.txt', 'r')
-    words = input_file.read.downcase.scan(/(\b[a-z]+\b)/).map 
+    words = ARGF.read.downcase.scan(/(\b[a-z]+\b)/).map 
     
     words.each_cons(3) do |word1, word2, word3|
         phrase = word1 + word2 + word3
