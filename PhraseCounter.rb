@@ -11,5 +11,5 @@ class PhraseCounter
     end
     
     counter.sort_by {|key,value| value}
-    .each{|key| output_file.print key, ' Occurences: ', counter[key], "\n"}
+    .last(100).each{|key| output_file.print key, ' Occurences: ', counter[key], "\n"}
 end
