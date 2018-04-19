@@ -2,7 +2,8 @@
 This is a simple command line utility that takes a list of file names as input and/or input piped via STDIN.
 The output will be in the form of a list of up to the top 100 three word phrases, as ranked by frequency within
 the provided text. If multiple input files are provided, they will be analyzed as one body of text. Punctuation,
-line endings, and casing are ignored in all input.
+line endings, and casing are ignored in all input. In the event input is provided but no three word phrases are 
+able to be built, the output is null.
 
 The output is formatted to print each phrase on a new line, for example:
 ```
