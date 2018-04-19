@@ -1,31 +1,30 @@
-require "../PhraseCounter.rb"
+require "PhraseCounter"
+require 'stringio'
 
-describe "It steps one word a time" do
-    it "Finds all three word phrases" do
-        input = "this is a six word phrase"
-        output = PhraseCounter input
-        expect(output[0]).to eq("this is a")
-        expect(output[1]).to eq("is a six")
-        expect(output[2]).to eq("a six word")
-        expect(output[3]).to eq("six word phrase")
+describe "main" do
+    it "objects to not having input" do
+        formatted_output = "Could not find any phrases to count!\n"
+        expect { main }.to output(formatted_output).to_stdout
+
     end
 end
 
-describe "Finds phrases and adds to count" do
-    it "Finds one repeated phrase" do
-        input = "one two three testing one two three"
-        output = PhraseCounter input
-        expect(output[0]).to eq("2 - one two three")
-        expect(output[1]).to eq("1 - two three testing")
-        expect(output[2]).to eq("1 - three testing one")
-        expect(output[3]).to eq("1 - testing one two")
+describe "counter" do
+    it "handles three word input" do
+        formatted_output = "1 - three new words\n"
+        expect { counter("three new words") }
+        .to output(formatted_output).to_stdout
     end
-end
 
-describe "Sanitizes input" do
-    it "Finds two occurences of the phrase" do
-        input = "I love Sandwiches. I LOVE SANDWICHES!!!"
-        output = PhraseCounter input
-        expect(output[0]).to eq("2 - i love sandwiches")
+    it "knows how to count" do
+        formatted_output = "2 - three new words\n1 - words three new\n1 - new words three\n"
+        expect { counter( "three new words three new words") }
+        .to output(formatted_output).to_stdout
+    end
+
+    it "ignores formatting in input" do
+        formatted_output = "2 - i love sandwiches\n1 - sandwiches i love\n1 - love sandwiches i\n"
+        expect { counter("I love Sandwiches. I LOVE SANDWICHES!!!") }
+        .to output(formatted_output).to_stdout
     end
 end
