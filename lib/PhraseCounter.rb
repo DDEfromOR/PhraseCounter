@@ -1,5 +1,5 @@
 def main
-    if ARGF.filename != "-" or (not STDIN.tty? and not STDIN.closed?)
+    if ARGF.filename != "-" or (not STDIN.tty? and not STDIN.closed?) #find a better way to do this
         input = ARGF.read
         unless input.length > 2
             puts ("Input contains less than three words!")
